@@ -16,12 +16,32 @@ Tambien es necesario cuando la variable diasAntelacion es menor a 21, sea negati
 |    17  |  Caso valido menor de edad                     | Correcto                             |
 |    -2  |  Caso invalido edad negativa                   | Incorrecto                           |
 |    35  |  Caso invalido entre las edades de descuento   | Incorrecto                           |
-|    88  |  Caso valido perosna de la tercera edad        | Correcto                             |
+|    88  |  Caso valido persona de la tercera edad        | Correcto                             |
 
 3. 
-**Caso valido menor de edad**:
-calculoTarifa(tarifaBase, 
-
+**Casos de prueba**:
+```
+@Test
+public void deberiaValidarMenorDeEdad(){
+       boolean validacion = calculoTarifa(tarifaBase, 21, 17);
+       assertEquals(validacion, true);
+}
+@Test
+public void deberiaRechazarEdadNegativa(){
+       boolean validacion = calculoTarifa(tarifaBase, 21, -2);
+       assertEquals(validacion, false);
+}
+@Test
+public void deberiaRechazarEdadSinDescuento(){
+       boolean validacion = calculoTarifa(tarifaBase, 21, 35);
+       assertEquals(validacion, false);
+}
+@Test
+public void deberiaCalidarEdadTerceraEdad(){
+       boolean validacion = calculoTarifa(tarifaBase, 21, 88);
+       assertEquals(validacion, true);
+}
+```
 4. 
 | Numero | Clase de equivalencia | Resultado Correcto / Incorrecto      | 
 | -------| --------------------- |--------------------------------------|
@@ -29,5 +49,3 @@ calculoTarifa(tarifaBase,
 |    -2  |  x: x =< -1           | Incorrecto                           |
 |    35  |  x: x < 65 ^ x > 17   | Incorrecto                           |
 |    88  |  x: x > 65            | Correcto                             |
-
-5.
